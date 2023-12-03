@@ -11,26 +11,6 @@ inputs:
   merging_pr_number:
     description: 'Number of the PR being merged'
     required: true
-# runs:
-#   using: 'composite'
-#   steps:
-#     - name: Checkout
-#       uses: actions/checkout@v4
-#     - name: Install Python
-#       uses: actions/setup-python@v4
-#       with:
-#         python-version: '3.11'
-#     - name: Install Dependencies
-#       run: pip install -r requirements.txt
-#       shell: bash
-#     - name: Pass Inputs to Shell
-#       run: |
-#           echo "PAT=${{ inputs.pat }}" >> $GITHUB_ENV
-#           echo "MERGING_PR_NUMBER=${{ inputs.merging_pr_number }}" >> $GITHUB_ENV
-#       shell: bash
-#     - name: Fetch the number's square
-#       run: python ./main.py
-#       shell: bash
 runs:
   using: "docker"
   image: "Dockerfile"
