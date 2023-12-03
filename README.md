@@ -21,6 +21,8 @@ jobs:
 
 When enabled, this action runs when a Pull Request (PR) is merged.
 
+You need to setup a PAT (Personal Access Token) with permission to edit comments. You can then add it as a secret in your repository under the name PAT.
+
 Once it is merged, it checks all the linked PRs. For each mention, it will check all comments and edit them if they match a certain template and checks the box.
 
 The templates are :
