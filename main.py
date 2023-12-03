@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 def handle_comment(comment: str, pr: PullRequest) -> Tuple[str, bool]:
     print("RAW COMMENT", comment)
     expected = f"- [] {pr.html_url}"
@@ -53,21 +54,18 @@ def handle_comment(comment: str, pr: PullRequest) -> Tuple[str, bool]:
 
 
 def main():
-    gh_token = os.environ.get("PAT")
+    gh_token = os.environ.get("INPUT_PAT")
     if gh_token is None:
         raise ValueError("Missing GitHub PAT")
 
     g = Github(gh_token)
 
     repo = g.get_repo(os.environ.get("GITHUB_ACTION_REPOSITORY"))
-    pr = repo.get_pull(int(os.environ.get("MERGING_PR_NUMBER")))
+    pr = repo.get_pull(int(os.environ.get("INPUT_MERGING_PR_NUMBER")))
     issue = repo.get_issue(pr.number)
     tl = issue.get_timeline()
     for e in tl:
-        if (
-            e.event == "cross-referenced"
-            and e.source.issue.pull_request is not None
-        ):
+        if e.event == "cross-referenced" and e.source.issue.pull_request is not None:
             referenced_pr_id = e.source.issue.number
             referenced_pr_repo = e.source.issue.repository
             print("Reference repo", referenced_pr_repo.name)
@@ -83,6 +81,7 @@ def main():
                         print("Couldn't edit comment", e)
                     print("Edited comment", comment.html_url)
                     print("New comment", new)
+
 
 if __name__ == "__main__":
     main()
