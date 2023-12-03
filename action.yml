@@ -5,6 +5,9 @@ inputs:
   pat:
     description: 'GitHub Personal Access Token to edit comments'
     required: true
+  merging_pr_repository:
+    description: 'Repository of the PR being merged'
+    required: true
   merging_pr_number:
     description: 'Number of the PR being merged'
     required: true

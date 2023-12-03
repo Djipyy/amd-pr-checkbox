@@ -60,10 +60,10 @@ def main():
 
     g = Github(gh_token)
 
-    print("GITHUB_ACTION_REPOSITORY", os.environ.get("GITHUB_ACTION_REPOSITORY"))
+    print("INPUT_MERGING_PR_REPOSITORY", os.environ.get("INPUT_MERGING_PR_REPOSITORY"))
     print("INPUT_MERGING_PR_NUMBER", os.environ.get("INPUT_MERGING_PR_NUMBER"))
     print("INPUT_PAT", os.environ.get("INPUT_PAT"))
-    repo = g.get_repo(os.environ.get("GITHUB_ACTION_REPOSITORY"))
+    repo = g.get_repo(os.environ.get("INPUT_MERGING_PR_REPOSITORY"))
     pr = repo.get_pull(int(os.environ.get("INPUT_MERGING_PR_NUMBER")))
     issue = repo.get_issue(pr.number)
     tl = issue.get_timeline()
