@@ -30,3 +30,8 @@ The templates are :
 ``` - [ ] $PR_URL```
 
 This action could be improved by adding error handling, and adding a way to limit the scope of the edits. Right now, it tries to go through all the linked PRs even if they do not belong to us.
+
+# Approach
+I tried to reuse other similar GitHub actions such as https://github.com/peter-evans/find-comment and https://github.com/marketplace/actions/find-linked-issues. However, I was not convinced I would be able to use them to achieve the desired result.
+
+I then looked at a tutorial explaining how to make a custom Python action, and found it easy. I then made my own action leveraging the GitHub API to find the linked PRs and edit the comments.
